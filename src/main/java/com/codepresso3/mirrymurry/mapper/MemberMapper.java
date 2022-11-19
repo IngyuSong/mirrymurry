@@ -1,0 +1,12 @@
+package com.codepresso3.mirrymurry.mapper;
+
+import com.codepresso3.mirrymurry.vo.Member;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+@Mapper
+public interface MemberMapper {
+
+    Member findByEmail(@Param("email") String email);
+
+}
