@@ -7,4 +7,13 @@
         FROM member
         WHERE email =#{email}
     </select>
+    <select id="findByPhoneNumber" resultType="com.codepresso3.mirrymurry.vo.Member">
+        SELECT *
+        FROM member
+        WHERE phone_number =#{phone_number}
+    </select>
+    <insert id="createMember">
+        INSERT INTO member(email, password, user_name, postcode, road_address, detail_address, phone_number, role)
+        VALUES (#{member.email}, #{member.password}, #{member.user_name}, #{member.postcode}, #{member.road_address}, #{member.detail_address}, #{member.phone_number}, #{member.role})
+    </insert>
 </mapper>

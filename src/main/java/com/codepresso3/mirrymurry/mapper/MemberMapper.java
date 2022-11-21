@@ -8,5 +8,8 @@ import org.apache.ibatis.annotations.Param;
 public interface MemberMapper {
 
     Member findByEmail(@Param("email") String email);
+    Member findByPhoneNumber(@Param("phone_number") String phone_number);
+
+    Integer createMember(@Param("member")Member member);
 
 }

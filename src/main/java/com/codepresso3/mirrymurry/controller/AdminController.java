@@ -4,13 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
-public class MainController {
+@RequiredArgsConstructor
+public class AdminController {
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/admin")
     public String main(){
 
-        return "main";
+        return "/admin/adminHome";
     }
 
 }
