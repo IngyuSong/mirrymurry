@@ -4,5 +4,6 @@
 <configuration>
     <mappers>
         <mapper resource="mybatis/mapper/member-mapper.xml"/>
+        <mapper resource="mybatis/mapper/store-mapper.xml"/>
     </mappers>
 </configuration>
