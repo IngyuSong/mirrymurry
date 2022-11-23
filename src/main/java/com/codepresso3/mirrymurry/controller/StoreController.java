@@ -9,7 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -48,12 +49,20 @@ public class StoreController {
         return "book cancel";
     }
 
-    @PostMapping("/addMenu")//사업자 페이지/ 메뉴 추가
-    @ResponseBody
-    public String addMenu(@RequestBody MenuDto menuDto){
-        Menu menu = menuDto.getMenu();
+    @GetMapping("/addMenu/{id}")
+    public String addMenuPage(@PathVariable Integer id, Model model){
+
+        model.addAttribute("storeId", id);
+        model.addAttribute("menuDto", new MenuDto());
+        return "store/addMenu";
+    }
+
+    @PostMapping("/addMenu/{id}")//사업자 페이지/ 메뉴 추가
+    public String addMenu(@PathVariable Integer id, @Valid MenuDto menuDto){
+        Menu menu = new Menu(menuDto);
+        menu.setMenu_store_id(id);
         storeService.addMenu(menu);
-        return "add menu";
+        return "store/addMenu";
     }
 
     @PostMapping("/updateMenu")//사업자 페이지/ 메뉴 수정

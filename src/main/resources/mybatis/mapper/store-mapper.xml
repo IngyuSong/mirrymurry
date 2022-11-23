@@ -28,7 +28,7 @@
 
     <insert id="addMenu">
         INSERT INTO menu(price, menu_name, menu_info, menu_store_id)
-        VALUES (#{price}, #{menu_name}, #{menu_info}, #{menu_store_id} )
+        VALUES (#{menu.price}, #{menu.menu_name}, #{menu.menu_info}, #{menu.menu_store_id} )
     </insert>
 
     <update id="updateMenu">
