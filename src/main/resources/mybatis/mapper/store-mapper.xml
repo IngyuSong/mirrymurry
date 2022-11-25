@@ -4,26 +4,22 @@
 <mapper namespace="com.codepresso3.mirrymurry.mapper.StoreMapper">
 
     <select id="bookMngList" resultType="com.codepresso3.mirrymurry.vo.BookMng">
-        SELECT book_member_id, email, user_name, phone_number, book_state, book_id
+        SELECT book_member_id, email, user_name, phone_number, book_id, DATE_FORMAT(book_time, '%Y-%m-%d') AS bookDate
         FROM book
         JOIN menu ON menu_id = book_menu_id
         LEFT JOIN member ON book_member_id = member_id
-        WHERE menu_store_id = #{store_id}
+        WHERE menu_store_id = #{store_id} AND DATE_FORMAT(book_time, '%Y-%m-%d') = #{bookDate}
     </select>
 
-    <update id="bookOk">
-        UPDATE book SET book_state = 1 WHERE book_id = #{book_id}
-    </update>
-
-    <update id="bookCancel">
-        UPDATE book SET book_state = 0 WHERE book_id = #{book_id}
-    </update>
+    <delete id="bookCancel">
+        DELETE FROM book WHERE book_id = #{book_id}
+    </delete>
 
     <select id="menuList" resultType="com.codepresso3.mirrymurry.vo.Menu">
         SELECT *
         FROM menu
         JOIN store ON store_id = menu_store_id
-        WHERE store_id = #{store_id}
+        WHERE menu_store_id = #{store_id}
     </select>
 
     <insert id="addMenu">
