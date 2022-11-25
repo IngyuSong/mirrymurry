@@ -27,6 +27,8 @@ public interface StoreMapper {
 
     List<Menu> menuList(@Param("store_id") Integer store_id);
 
+    Menu getMenu(@Param("menu_id") Integer menu_id);
+
 
 }
 

@@ -16,10 +16,10 @@
     </delete>
 
     <select id="menuList" resultType="com.codepresso3.mirrymurry.vo.Menu">
-        SELECT *
+        SELECT menu_id, price, menu_name, menu_info, menu_store_id
         FROM menu
         JOIN store ON store_id = menu_store_id
-        WHERE menu_store_id = #{store_id}
+        WHERE store_id = #{store_id}
     </select>
 
     <insert id="addMenu">
@@ -27,10 +27,16 @@
         VALUES (#{menu.price}, #{menu.menu_name}, #{menu.menu_info}, #{menu.menu_store_id} )
     </insert>
 
+    <select id="getMenu" resultType="com.codepresso3.mirrymurry.vo.Menu">
+        SELECT menu_id, price, menu_name, menu_info, menu_store_id
+        FROM menu
+        WHERE menu_id = #{menu_id}
+    </select>
+
     <update id="updateMenu">
         UPDATE menu
-        SET price=#{price}, menu_name=#{menu_name}, menu_info=#{menu_info}
-        WHERE menu_id = #{menu_id}
+        SET price=#{menu.price}, menu_name=#{menu.menu_name}, menu_info=#{menu.menu_info}
+        WHERE menu_id = #{menu.menu_id}
     </update>
 
 </mapper>

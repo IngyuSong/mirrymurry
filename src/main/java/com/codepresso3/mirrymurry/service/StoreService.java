@@ -32,8 +32,15 @@ public class StoreService {
         return result == 1;
     }
 
+    public Menu getMenu(Integer menu_id){
+        Menu menu = storeMapper.getMenu(menu_id);
+        return menu;
+    }
+
     public boolean updateMenu(Menu menu){
         Integer result = storeMapper.updateMenu(menu);
+        System.out.println(menu.getPrice());
+        System.out.println(menu.getMenu_id());
         return result == 1;
     }
 

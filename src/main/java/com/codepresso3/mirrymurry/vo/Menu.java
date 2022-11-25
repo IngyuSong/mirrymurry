@@ -13,8 +13,6 @@ public class Menu {
     String menu_info;
     Integer menu_store_id;
 
-    public Menu(){}
-
     public Menu(Integer menu_id, Integer price, String menu_name, String menu_info, Integer menu_store_id) {
         this.menu_id = menu_id;
         this.price = price;

@@ -47,6 +47,9 @@
 
 
   <form action="/stores/addMenu/1" role="form" method="post" th:object="${menuDto}" onsubmit="return check(this)">
+
+      <input type="hidden"  th:field="*{id}">
+
    <p class="h2">메뉴 등록</p>
     <div class="input-group">
       <div class="input-group-prepend">
@@ -68,9 +71,13 @@
       <textarea type="text" th:field="*{menu_info}" class="form-control" placeholder="메뉴 소개를 입력해주세요.(5자 이상 200자 이하)"></textarea>
     </div>
 
-    <div style="text-align: center">
-      <button id="submit" type="submit" class="btn btn-primary">저장</button>
-    </div>
+      <div th:if="${#strings.isEmpty(menuDto.menu_id)}" style="text-align: center">
+          <button th:formaction="@{/stores/addMenu/1}" type="submit" class="btn btn-primary">저장</button>
+      </div>
+      <div th:unless="${#strings.isEmpty(menuDto.menu_id)}" style="text-align: center">
+          <button th:formaction="@{'/stores/updateMenu/' + ${menuDto.menu_id} }" type="submit" class="btn btn-primary">수정</button>
+      </div>
+
       <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
   </form>
 
